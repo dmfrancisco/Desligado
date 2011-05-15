@@ -1,0 +1,11 @@
+== OfflineWebApp - A Simple Backbone.js Example by James Yu
+
+This is just a simple Backbone.js example.
+
+I forked just for fun and study cases.
+
+Take a look at the tutorial here:
+http://www.jamesyu.org/2011/01/27/OfflineWebApp-a-backbone-js-tutorial-by-example/
+
+To run, simply clone, add your own database.yml, and rake db:migrate.
+

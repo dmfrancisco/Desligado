@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+  <!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+  <!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+  <!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+  <!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+  <!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js" manifest="/application.manifest"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>OfflineWebApp</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <%#= stylesheet_link_tag :all, :cache => true %>
+    <%= include_stylesheets :common, :media => 'all' %>
+    <%= include_javascripts :common, :app %>
+  </head>
+
+  <body>
+    <%= yield %>
+  </body>
+</html>

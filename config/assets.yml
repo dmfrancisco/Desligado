@@ -1,0 +1,35 @@
+package_assets: off
+template_function: _.template
+
+javascripts:
+  # Common javascript dependencies
+  common:
+    - public/javascripts/jquery.min.js
+    - public/javascripts/jquery.offline.js
+    - public/javascripts/rails.js
+    - public/javascripts/json2.js
+    - public/javascripts/underscore.js
+    - public/javascripts/backbone.js
+    - public/javascripts/jquery.dotimeout.js
+  # Application specific javascript files
+  app:
+    - public/javascripts/persistence/persistence.js
+    - public/javascripts/persistence/persistence.store.sql.js
+    - public/javascripts/persistence/persistence.store.memory.js
+    - public/javascripts/persistence/persistence.store.websql.js
+    - public/javascripts/persistence/persistence.sync.js
+    - public/javascripts/backbone/sync.js
+    - public/javascripts/backbone/application.js
+    - public/javascripts/backbone/models/*.js
+    - public/javascripts/backbone/**/*.js
+    - app/views/**/*.jst
+
+stylesheets:
+  # Common stylesheets
+  common:
+    - public/stylesheets/base.css
+    - public/stylesheets/formtastic.css
+    - public/stylesheets/jquery.tipsy.css
+    - public/stylesheets/uniform.default.css
+    - public/stylesheets/themes/activo/style.css
+    - public/stylesheets/override.css

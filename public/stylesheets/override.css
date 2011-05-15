@@ -1,0 +1,32 @@
+/* Custom preferences and bug fixes for the activo theme */
+#box {
+  width: 700px;
+}
+.table th.last {
+  width: 50px;
+}
+#container {
+  min-width: 720px;
+}
+form.formtastic fieldset > ol > li {
+  width: 100%;
+}
+#box .block .content form.formtastic fieldset > ol > li input {
+  width: 100%;
+  max-width: 655px;
+}
+
+/* Notice and error messages */
+.success, .error {
+    margin: 0px;
+    padding: 10px;
+    background: black;
+    color: white;
+    text-align: center;
+    -moz-box-shadow: 0 1px 2px #555;
+    -webkit-box-shadow: 0 1px 2px #555;
+    box-shadow: 0 1px 2px #555;
+}
+.error {
+    color: #CF392C;
+}
