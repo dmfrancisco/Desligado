@@ -5,6 +5,7 @@ gem 'sqlite3-ruby', '1.2.5', :require => 'sqlite3'
 
 gem 'jquery-rails'
 gem "rack-offline" # Generate the application manifest
+# gem 'win32-open3' # This is sometimes needed to windows users
 gem "jammit", :git => 'git://github.com/documentcloud/jammit.git' # Asset packaging library
 
 group :development, :test do
