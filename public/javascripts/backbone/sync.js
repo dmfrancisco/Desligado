@@ -109,7 +109,7 @@ function readOne(model, success) {
             model.set(toJSON(item));
             success(model); // Success callback (will render the page)
         });
-    });
+    }, 'dont-sync-please');
 }
 
 function readAll(model, success) {
