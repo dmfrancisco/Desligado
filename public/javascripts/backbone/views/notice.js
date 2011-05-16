@@ -22,12 +22,13 @@ App.Views.Notice = Backbone.View.extend({
                 view.remove();
             });
         });
-
         return this;
     }
 });
 
 App.Views.Error = App.Views.Notice.extend({
     className: "error",
-    defaultMessage: 'Uh oh! Something went wrong. Please try again.'
+    defaultMessage: function(error) {
+        return error ? error : 'Uh oh! Something went wrong. Please try again.';
+    }
 });

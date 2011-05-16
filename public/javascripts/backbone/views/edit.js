@@ -19,7 +19,7 @@ App.Views.Edit = Backbone.View.extend({
                 Backbone.history.saveLocation('items/' + model.id);
             },
             error: function() {
-                new App.Views.Error();
+                new App.Views.Error({ message: 'Error saving this item. Did you filled all attributes?' });
             }
         });
 
