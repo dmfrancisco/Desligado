@@ -92,6 +92,7 @@ function save(callback, item, dontSync) {
         if (window.navigator.onLine && !dontSync) {
             sync(callback, item); // Sync to server
         } else {
+            persistence.flush(); // Flush the new changes
             callback();
         }
     });
@@ -128,13 +129,12 @@ function createAction(model, success) {
     item.dirty    = true;
     // item.lastChange = getEpoch(new Date());
     persistence.add(item); // Add to database
-    persistence.flush(); // Flush the new changes
     model.set(toJSON(item));
 
     // Save changes in localStorage (if using) and sync with server
     save(function() {
         success(model); // Success callback (will render the page)
-    }, item, 'dont-sync-please');
+    }, item);
 }
 
 function updateAction(model, success) {
@@ -143,13 +143,12 @@ function updateAction(model, success) {
         item.deleted  = false;
         item.dirty    = true;
         // item.lastChange = getEpoch(new Date());
-        persistence.flush(); // Flush the new changes
         model.set(toJSON(item));
 
         // Save changes in localStorage (if using) and sync with server
         save(function() {
             success(model); // Success callback (will render the page)
-        }, item, 'dont-sync-please');
+        }, item);
     });
 }
 
@@ -157,13 +156,12 @@ function deleteAction(model, success) {
     ItemEntity.load(model.id, function(item) {
         item.deleted  = !item.deleted; // Allow undo
         item.dirty    = true;
-        persistence.flush(); // Flush the new changes
         model.set(toJSON(item));
 
         // Save changes in localStorage (if using) and sync with server
         save(function() {
             success(model); // Success callback (will render the page)
-        }, item, 'dont-sync-please');
+        }, item);
     });
 }
 
