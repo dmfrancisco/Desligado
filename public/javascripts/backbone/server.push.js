@@ -13,7 +13,7 @@ $(function() {
                 items.fetch({
                     success: function() {
                         // If user is seeing the index page, update it
-                        if (window.location.pathname.slice(0, -1) === getRoute('index'))
+                        if (window.location.hash === getRoute('index'))
                             new App.Views.Index({ collection: items });
                     },
                     error: function() {
