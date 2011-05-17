@@ -33,11 +33,11 @@
                     <td><%= item.escape('name') %></td>
                     <td><%= item.escape('category') %></td>
                     <td class='last'>
-                      <a href="#"><img alt="Show"
+                      <a href="#items/<%= item.id %>"><img alt="Show"
                          onmouseout="this.src='/stylesheets/themes/activo/images/icons/24/show.png'"
                          onmouseover="this.src='/stylesheets/themes/activo/images/icons/24/show-hover.png'"
                          src="/stylesheets/themes/activo/images/icons/24/show.png"
-                         title="Show"></a><a href="#items/<%= item.id %>"><img alt="Edit"
+                         title="Show"></a><a href="#items/<%= item.id %>/edit"><img alt="Edit"
                          onmouseout="this.src='/stylesheets/themes/activo/images/icons/24/edit.png'"
                          onmouseover="this.src='/stylesheets/themes/activo/images/icons/24/edit-hover.png'"
                          src="/stylesheets/themes/activo/images/icons/24/edit.png"

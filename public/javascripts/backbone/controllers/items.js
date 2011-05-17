@@ -1,8 +1,9 @@
 App.Controllers.Items = Backbone.Controller.extend({
     routes: {
-        "":          "index",
-        "items/:id": "edit",
-        "new":       "create",
+        "":                 "index",
+        "items/:id":        "show",
+        "items/:id/edit":   "edit",
+        "new":              "create",
         "items/:id/delete": "destroy",
     },
 
@@ -15,6 +16,20 @@ App.Controllers.Items = Backbone.Controller.extend({
             },
             error: function() {
                 new Error({ message: "Error loading items." });
+            }
+        });
+    },
+
+    // Show a specific item
+    show: function(id) {
+        var item = new Item({ id: id });
+        item.fetch({
+            success: function(model, resp) {
+                new App.Views.Show({ model: item });
+            },
+            error: function() {
+                new Error({ message: 'Could not find that item.' });
+                window.location.hash = '#';
             }
         });
     },

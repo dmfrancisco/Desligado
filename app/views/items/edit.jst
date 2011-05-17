@@ -39,7 +39,7 @@
             <a href="#">Warehouse</a>
           </li>
           <li>
-            <a href="#">New item</a>
+            <a href="<%= window.location.hash %>"><%= model.isNew() ? 'New' : 'Edit' %> item</a>
           </li>
         </ul>
       </div>

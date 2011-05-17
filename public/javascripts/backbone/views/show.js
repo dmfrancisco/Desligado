@@ -1,10 +1,10 @@
-App.Views.Index = Backbone.View.extend({
+App.Views.Show = Backbone.View.extend({
     initialize: function() {
         this.render();
     },
 
     render: function() {
-        $(this.el).html(JST.index({ collection: this.collection }));
+        $(this.el).html(JST.show({ model: this.model }));
         $('#app').html(this.el);
     }
 });
