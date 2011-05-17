@@ -12,6 +12,9 @@
 
     <%= include_stylesheets :common, :media => 'all' %>
     <%= include_javascripts :common, :app %>
+
+    <%# Sync to clients using websockets %>
+    <%= javascript_include_tag "http://localhost:9292/faye.js" %>
   </head>
 
   <body>

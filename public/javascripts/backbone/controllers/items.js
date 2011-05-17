@@ -64,3 +64,10 @@ App.Controllers.Items = Backbone.Controller.extend({
         });
     }
 });
+
+// For example, getRoute('create') should return 'new'
+function getRoute(actionName) {
+    var controller = new App.Controllers.Items();
+    var actions = _.values(controller.routes);
+    return _.keys(controller.routes)[_.indexOf(actions, actionName)];
+}

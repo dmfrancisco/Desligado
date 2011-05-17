@@ -127,7 +127,7 @@ function readAll(model, success) {
             });
             success(resp); // Success callback (will render the page)
         });
-    });
+    }, 'dont-sync-please');
 }
 
 function createAction(model, success) {
