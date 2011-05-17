@@ -47,6 +47,12 @@ persistence.store.memory.config(persistence, 'database', 5 * 1024 * 1024, '1.0')
 /* */       return { "id":item.id, "name":item.name, "category":item.category,
 /* */           "deleted":item.deleted, "dirty":item.dirty }
 /* */   }
+/* */
+/* */   // Called when client accesses the index page
+/* */   function listItems() {
+/* */       // Returns query collection containing all persisted instances
+/* */       ItemEntity.all().order("name", true);
+/* */   }
 
 // URI to sync with server
 ItemEntity.enableSync('/items/sync.json');
@@ -109,8 +115,7 @@ function readOne(model, success) {
 
 function readAll(model, success) {
     load(function() {
-        var allItems = ItemEntity.all(); // Returns query collection containing all persisted instances
-        allItems.list(function(results) { // Asynchronously fetches the results matching the query
+        listItems().list(function(results) { // Asynchronously fetches the results matching the query
             var resp = [];
             results.forEach(function(item) { // Iterate over the results
                 resp.push(toJSON(item));
