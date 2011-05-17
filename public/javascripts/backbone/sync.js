@@ -16,8 +16,8 @@
  **/
 
 // Which DB do you want to use today?
-// persistence.store.websql.config(persistence, "webapp", 'database', 5 * 1024 * 1024);
-persistence.store.memory.config(persistence, 'database', 5 * 1024 * 1024, '1.0');
+persistence.store.websql.config(persistence, "webapp", 'database', 5 * 1024 * 1024);
+// persistence.store.memory.config(persistence, 'database', 5 * 1024 * 1024, '1.0');
 
 /* */   // APPLICATION SPECIFIC CODE
 /* */
@@ -85,27 +85,27 @@ function sync(callback, item) {
 
 // Load elements from localStorage (if used) and sync with server (if dontSync == false)
 function load(callback, dontSync) {
-    persistence.loadFromLocalStorage(function() { // if using localStorage
-        console.log("All data loaded from localStorage!");
+    // persistence.loadFromLocalStorage(function() { // if using localStorage
+        // console.log("All data loaded from localStorage!");
         if (window.navigator.onLine && !dontSync) {
             sync(callback); // Sync to server
         } else {
             callback();
         }
-    });
+    // });
 }
 
 // Save elements to localStorage (if used) and sync with server (if dontSync == false)
 function save(callback, item, dontSync) {
-    persistence.saveToLocalStorage(function() { // if using localStorage
-        console.log("All data saved to localStorage!");
+    // persistence.saveToLocalStorage(function() { // if using localStorage
+        // console.log("All data saved to localStorage!");
         if (window.navigator.onLine && !dontSync) {
             sync(callback, item); // Sync to server
         } else {
             persistence.flush(); // Flush the new changes
             callback();
         }
-    });
+    // });
 }
 
 function readOne(model, success) {
