@@ -51,7 +51,7 @@ persistence.store.memory.config(persistence, 'database', 5 * 1024 * 1024, '1.0')
 /* */   // Called when client accesses the index page
 /* */   function listItems() {
 /* */       // Returns query collection containing all persisted instances
-/* */       ItemEntity.all().order("name", true);
+/* */       return ItemEntity.all().order("name", true);
 /* */   }
 
 // URI to sync with server
