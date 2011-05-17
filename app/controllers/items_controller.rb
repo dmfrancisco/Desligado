@@ -3,28 +3,10 @@ class ItemsController < ApplicationController
 
   respond_to :json # Respond with JSON objects
 
-  def index
-    respond_with Item.ordered.all
-  end
-
   def sync
     # If this is a HTTP GET request, a client want's to check for updates
     # If this is a HTTP POST, a client want's to save pending changes
     request.post? ? sync_post : sync_get
-  end
-
-  def show
-    respond_with Item.find(params[:id])
-  end
-
-  def create
-    respond_with Item.create!(params)
-  end
-
-  def update
-    item = Item.find(params[:id])
-    item.update_attributes! params
-    respond_with item
   end
 
   private

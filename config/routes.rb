@@ -1,6 +1,6 @@
 OfflineWebApp::Application.routes.draw do
 
-  resources :items do
+  resources :items, :only => [] do
     collection do
       get 'sync'
       post 'sync'
