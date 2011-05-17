@@ -47,6 +47,8 @@ class ItemsController < ApplicationController
   end
 
   def sync_post
+    something_changed = false
+
     # Request body should be like [{"id":"BDDF85807155497490C12D6DA3A833F1", "name":"Something"}]
     params["_json"].each do |item_hash|
       item = Item.find_by_uuid item_hash[:id] # Checks if already exists
@@ -55,7 +57,10 @@ class ItemsController < ApplicationController
       item.category = item_hash[:category]
       item.deleted  = item_hash[:deleted]
       item.uuid     = item_hash[:id]
-      item.save
+
+      something_changed ||= item.changed?
+      item.save if item.changed?
+      puts "-- Element synced: #{item.uuid}"
     end
 
     # Response should be like {"status": "ok", "now": 1279888110797}

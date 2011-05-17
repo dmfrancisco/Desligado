@@ -57,21 +57,15 @@ persistence.schemaSync();
 var session = persistence;
 
 
-// This function should be called after syncing to server
-function cleanDirty() {
-    var allItems = ItemEntity.all().filter("dirty", '=', true);
-    allItems.list(null, function (items) {
-        items.forEach(function (item) {
-            item.dirty = false;
-        });
-    });
-}
-
 // Sync local database with server
-function sync(callback) {
-    ItemEntity.syncAll(persistence, '/items/sync.json', persistence.sync.preferLocalConflictHandler, function() {
-        cleanDirty(); // Now that everything is synced, change the dirty boolean to false
+function sync(callback, item) {
+    ItemEntity.syncAll(persistence, '/items/sync.json', persistence.sync.preferRemoteConflictHandler, function() {
+        // cleanDirty(); // Now that everything is synced, change the dirty boolean to false
         console.log('Done syncing!');
+        if (item) {
+            item.dirty = false;
+            persistence.flush();
+        }
         callback();
     }, function() {
         console.log('Error syncing to server!');
@@ -92,11 +86,11 @@ function load(callback, dontSync) {
 }
 
 // Save elements to localStorage (if used) and sync with server (if dontSync == false)
-function save(callback, dontSync) {
+function save(callback, item, dontSync) {
     persistence.saveToLocalStorage(function() { // if using localStorage
         console.log("All data saved to localStorage!");
         if (window.navigator.onLine && !dontSync) {
-            sync(callback); // Sync to server
+            sync(callback, item); // Sync to server
         } else {
             callback();
         }
@@ -140,7 +134,7 @@ function createAction(model, success) {
     // Save changes in localStorage (if using) and sync with server
     save(function() {
         success(model); // Success callback (will render the page)
-    }, 'dont-sync-please');
+    }, item, 'dont-sync-please');
 }
 
 function updateAction(model, success) {
@@ -155,7 +149,7 @@ function updateAction(model, success) {
         // Save changes in localStorage (if using) and sync with server
         save(function() {
             success(model); // Success callback (will render the page)
-        }, 'dont-sync-please');
+        }, item, 'dont-sync-please');
     });
 }
 
@@ -169,7 +163,7 @@ function deleteAction(model, success) {
         // Save changes in localStorage (if using) and sync with server
         save(function() {
             success(model); // Success callback (will render the page)
-        });
+        }, item, 'dont-sync-please');
     });
 }
 
