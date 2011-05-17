@@ -51,5 +51,7 @@ class ItemsController < ApplicationController
     respond_to do |format|
       format.json { render :json => resp.to_json }
     end
+
+    broadcast_ping if something_changed # Send ping to all clients, notifying them to sync
   end
 end

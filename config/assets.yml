@@ -18,6 +18,7 @@ javascripts:
     - public/javascripts/persistence/persistence.store.websql.js
     - public/javascripts/persistence/persistence.sync.js
     - public/javascripts/backbone/sync.js
+    - public/javascripts/backbone/server.push.js
     - public/javascripts/backbone/application.js
     - public/javascripts/backbone/models/*.js
     - public/javascripts/backbone/**/*.js

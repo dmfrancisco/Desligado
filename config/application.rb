@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'net/http'
 
 ENV["RAILS_ASSET_ID"] = "" # disable timestamps at end of asset files for offline browsing
 
