@@ -17,5 +17,7 @@ class ApplicationController < ActionController::Base
     message = { :channel => channel, :data => data }
     uri = URI.parse("http://localhost:9292/faye")
     Net::HTTP.post_form(uri, :message => message.to_json)
+  rescue Errno::ECONNREFUSED
+    warn "#{self} is unable to find server."
   end
 end
