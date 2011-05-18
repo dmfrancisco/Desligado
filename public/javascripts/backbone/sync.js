@@ -21,6 +21,9 @@ persistence.store.memory.config(persistence, 'database', 5 * 1024 * 1024, '1.0')
 
 /* */   // APPLICATION SPECIFIC CODE
 /* */
+/* */   // URI of the sync server component
+/* */   var server_sync_uri = '/items/sync.json';
+/* */
 /* */   // The database table
 /* */   var ItemEntity = persistence.define('Item4', {
 /* */     // Specific attributes from this entity (**can be modified**)
@@ -55,7 +58,7 @@ persistence.store.memory.config(persistence, 'database', 5 * 1024 * 1024, '1.0')
 /* */   }
 
 // URI to sync with server
-ItemEntity.enableSync('/items/sync.json');
+ItemEntity.enableSync(server_sync_uri);
 
 // Confs
 persistence.debug = true;
@@ -65,7 +68,7 @@ var session = persistence;
 
 // Sync local database with server
 function sync(callback, item) {
-    ItemEntity.syncAll(persistence, '/items/sync.json', persistence.sync.preferRemoteConflictHandler, function() {
+    ItemEntity.syncAll(persistence, server_sync_uri, persistence.sync.preferRemoteConflictHandler, function() {
         console.log('Done syncing!');
         if (item) {
             // Now that everything is synced, change the dirty boolean to false
