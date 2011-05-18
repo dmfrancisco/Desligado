@@ -52,6 +52,11 @@ persistence.store.websql.config(persistence, "webapp", 'database', 5 * 1024 * 10
 
 // URI to sync with server
 ItemEntity.enableSync(server_sync_uri);
+ItemEntity.syncAll(persistence, server_sync_uri, persistence.sync.preferRemoteConflictHandler, function() {
+    console.log('First sync!');
+}, function() {
+    console.log('Error syncing to server!');
+});
 
 // Confs
 persistence.debug = true;
@@ -114,7 +119,7 @@ function readOne(model, success) {
             model.set(item.toJSON());
             success(model); // Success callback (will render the page)
         });
-    }, 'dont-sync-please');
+    }, auto_sync);
 }
 
 function readAll(model, success) {
@@ -127,7 +132,7 @@ function readAll(model, success) {
             });
             success(resp); // Success callback (will render the page)
         });
-    }, 'dont-sync-please');
+    }, auto_sync);
 }
 
 function createAction(model, success) {

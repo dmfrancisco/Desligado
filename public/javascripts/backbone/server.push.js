@@ -1,26 +1,32 @@
+var synced = false;
+var auto_sync = false;
+
 $(function() {
-    var synced = false;
-    var faye = new Faye.Client('http://localhost:9292/faye');
+    if (typeof Faye == 'undefined') {
+      console.log("Faye is unavailable, websockets won't be used");
+    } else {
+        var faye = new Faye.Client('http://localhost:9292/faye');
+        auto_sync = true;
+        faye.subscribe('/sync', function(data) {
+            if (synced) {
+                synced = false;
+            } else if (data === 'ping') {
+                save(function() {
+                    synced = true;
 
-    faye.subscribe('/sync', function(data) {
-        if (synced) {
-            synced = false;
-        } else if (data === 'ping') {
-            save(function() {
-                synced = true;
-
-                var items = new App.Collections.Items();
-                items.fetch({
-                    success: function() {
-                        // If user is seeing the index page, update it
-                        if (window.location.hash === getRoute('index'))
-                            new App.Views.Index({ collection: items });
-                    },
-                    error: function() {
-                        new Error({ message: "Error loading items." });
-                    }
+                    var items = new App.Collections.Items();
+                    items.fetch({
+                        success: function() {
+                            // If user is seeing the index page, update it
+                            if (window.location.hash === getRoute('index'))
+                                new App.Views.Index({ collection: items });
+                        },
+                        error: function() {
+                            new Error({ message: "Error loading items." });
+                        }
+                    });
                 });
-            });
-        }
-    });
+            }
+        });
+    }
 });
