@@ -66,10 +66,18 @@ var session = persistence;
 // Sync local database with server
 function sync(callback, item) {
     ItemEntity.syncAll(persistence, '/items/sync.json', persistence.sync.preferRemoteConflictHandler, function() {
-        // cleanDirty(); // Now that everything is synced, change the dirty boolean to false
         console.log('Done syncing!');
         if (item) {
+            // Now that everything is synced, change the dirty boolean to false
             item.dirty = false;
+            persistence.flush();
+        } else {
+            // Check if there are still items with dirty = true
+            ItemEntity.all().filter('dirty','=',true).list(function(results) {
+                results.forEach(function(item) {
+                    item.dirty = false;
+                });
+            });
             persistence.flush();
         }
         callback();

@@ -19,8 +19,8 @@ class ItemsController < ApplicationController
     # Should be like { "now":1279888110421, "updates": [ {"id": "F89F99F7B887423FB4B9C961C3883C0A",
     #                  "name": "Something", "_lastChange": 1279888110370 } ] }
     items = Item.updated_after(since).ordered
+    items.each { |item| puts "-- Element sent: #{item.uuid}" } # Print items which must be sent
     items = items.collect{ |item| item.attributes }
-    puts items.to_yaml # Print the new items which must be sent
 
     # Respond
     now  = to_unix_ms_timestamp Time.now

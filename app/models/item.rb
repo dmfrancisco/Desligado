@@ -6,6 +6,9 @@ class Item < ActiveRecord::Base
 
   attr_accessible :name, :category, :deleted
 
+  validates_presence_of :name, :category, :deleted
+
+
   # When updating the virtual attribute "_lastChange", update the attribute "updated_at"
   def _lastChange=(last_changed)
     # Convert from UNIX timestamp to DateTime
