@@ -41,8 +41,9 @@ class ItemsController < ApplicationController
       item.uuid     = item_hash[:id]
 
       something_changed ||= item.changed?
-      item.save if item.changed?
-      puts "-- Element synced: #{item.uuid}"
+      saved = false
+      saved = item.save if item.changed?
+      puts "-- Element synced: #{item.uuid} [changed? #{item.changed?} | saved? #{saved}]"
     end
 
     # Response should be like {"status": "ok", "now": 1279888110797}

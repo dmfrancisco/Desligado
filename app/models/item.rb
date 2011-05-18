@@ -6,7 +6,8 @@ class Item < ActiveRecord::Base
 
   attr_accessible :name, :category, :deleted
 
-  validates_presence_of :name, :category, :deleted
+  validates_presence_of :name, :category
+  validates_inclusion_of :deleted, :in => [true, false]
 
 
   # When updating the virtual attribute "_lastChange", update the attribute "updated_at"
