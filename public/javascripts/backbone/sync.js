@@ -57,13 +57,18 @@ ItemEntity.enableSync(server_sync_uri);
 persistence.debug = true;
 // persistence.reset();
 var session = persistence;
-persistence.schemaSync(function(tx) {
-   ItemEntity.syncAll(persistence, server_sync_uri, persistence.sync.preferRemoteConflictHandler, function() {
-       console.log('First sync!');
-   }, function() {
-       console.log('Error syncing to server!');
-   });
+
+persistence.schemaSync(function(tx) { // First sync
+    // persistence.loadFromLocalStorage(function() { // if using localStorage
+        ItemEntity.syncAll(persistence, server_sync_uri,
+            persistence.sync.preferRemoteConflictHandler, function() {
+                console.log('First sync!');
+        }, function() {
+            console.log('Error syncing to server!');
+        });
+    // });
 });
+
 
 // Sync local database with server
 function sync(callback, item) {
