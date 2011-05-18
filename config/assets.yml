@@ -1,4 +1,4 @@
-package_assets: off
+package_assets: always
 template_function: _.template
 
 javascripts:

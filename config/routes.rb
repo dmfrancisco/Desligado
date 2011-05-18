@@ -9,9 +9,6 @@ OfflineWebApp::Application.routes.draw do
 
   root :to => 'home#index'
 
-  # This route points to a Rails::Offline Rack application
-  match "/application.manifest" => Rails::Offline
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -68,4 +65,41 @@ OfflineWebApp::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+
+
+  offline = Rack::Offline.configure do
+    public_path = Rails.public_path
+
+    files = Dir[
+      "#{public_path}/images/**/*.*",
+      "#{public_path}/stylesheets/themes/activo/fonts/*"
+    ]
+    files.each do |file|
+      cache file.gsub(public_path, "")
+    end
+
+    cache "/assets/common.css"
+    cache "/assets/common.js"
+    cache "/assets/app.js"
+
+    cache "/stylesheets/themes/activo/images/bgd.jpg"
+    cache "/stylesheets/themes/activo/images/boxbar-background.png"
+    cache "/stylesheets/themes/activo/images/breadcrumb.png"
+    cache "/stylesheets/themes/activo/images/button-background-active.png"
+    cache "/stylesheets/themes/activo/images/button-background.png"
+
+    cache "/stylesheets/themes/activo/images/icons/add.png"
+    cache "/stylesheets/themes/activo/images/icons/tick.png"
+    cache "/stylesheets/themes/activo/images/icons/cross.png"
+    cache "/stylesheets/themes/activo/images/icons/24/show.png"
+    cache "/stylesheets/themes/activo/images/icons/24/edit.png"
+    cache "/stylesheets/themes/activo/images/icons/24/cross.png"
+    cache "/stylesheets/themes/activo/images/icons/24/show-hover.png"
+    cache "/stylesheets/themes/activo/images/icons/24/edit-hover.png"
+    cache "/stylesheets/themes/activo/images/icons/24/cross-hover.png"
+
+    network "/"
+  end
+
+  match "/application.manifest" => offline
 end
