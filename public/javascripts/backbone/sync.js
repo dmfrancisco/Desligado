@@ -52,17 +52,18 @@ persistence.store.websql.config(persistence, "webapp", 'database', 5 * 1024 * 10
 
 // URI to sync with server
 ItemEntity.enableSync(server_sync_uri);
-ItemEntity.syncAll(persistence, server_sync_uri, persistence.sync.preferRemoteConflictHandler, function() {
-    console.log('First sync!');
-}, function() {
-    console.log('Error syncing to server!');
-});
 
 // Confs
 persistence.debug = true;
-persistence.schemaSync();
+// persistence.reset();
 var session = persistence;
-
+persistence.schemaSync(function(tx) {
+   ItemEntity.syncAll(persistence, server_sync_uri, persistence.sync.preferRemoteConflictHandler, function() {
+       console.log('First sync!');
+   }, function() {
+       console.log('Error syncing to server!');
+   });
+});
 
 // Sync local database with server
 function sync(callback, item) {
