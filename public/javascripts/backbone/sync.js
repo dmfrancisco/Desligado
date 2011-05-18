@@ -44,13 +44,6 @@ persistence.store.memory.config(persistence, 'database', 5 * 1024 * 1024, '1.0')
 /* */       item.category = model.get('category');
 /* */   }
 /* */
-/* */   // Convert persistence.js object to JSON
-/* */   function toJSON(item) {
-/* */       // TODO obj.selectJSON(...) could probably be used to generalize this function
-/* */       return { "id":item.id, "name":item.name, "category":item.category,
-/* */           "deleted":item.deleted, "dirty":item.dirty }
-/* */   }
-/* */
 /* */   // Called when client accesses the index page
 /* */   function listItems() {
 /* */       // Returns query collection containing all persisted instances
@@ -118,7 +111,7 @@ function save(callback, item, dontSync) {
 function readOne(model, success) {
     load(function() {
         ItemEntity.load(model.id, function(item) {
-            model.set(toJSON(item));
+            model.set(item.toJSON());
             success(model); // Success callback (will render the page)
         });
     }, 'dont-sync-please');
@@ -129,7 +122,7 @@ function readAll(model, success) {
         listItems().list(function(results) { // Asynchronously fetches the results matching the query
             var resp = [];
             results.forEach(function(item) { // Iterate over the results
-                resp.push(toJSON(item));
+                resp.push(item.toJSON());
                 // console.log(JSON.stringify(resp));
             });
             success(resp); // Success callback (will render the page)
@@ -145,7 +138,7 @@ function createAction(model, success) {
     item.dirty    = true;
     // item.lastChange = getEpoch(new Date());
     persistence.add(item); // Add to database
-    model.set(toJSON(item));
+    model.set(item.toJSON());
 
     // Save changes in localStorage (if using) and sync with server
     save(function() {
@@ -159,7 +152,7 @@ function updateAction(model, success) {
         item.deleted  = false;
         item.dirty    = true;
         // item.lastChange = getEpoch(new Date());
-        model.set(toJSON(item));
+        model.set(item.toJSON());
 
         // Save changes in localStorage (if using) and sync with server
         save(function() {
@@ -172,7 +165,7 @@ function deleteAction(model, success) {
     ItemEntity.load(model.id, function(item) {
         item.deleted  = !item.deleted; // Allow undo
         item.dirty    = true;
-        model.set(toJSON(item));
+        model.set(item.toJSON());
 
         // Save changes in localStorage (if using) and sync with server
         save(function() {
