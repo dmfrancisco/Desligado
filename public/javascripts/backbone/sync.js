@@ -81,120 +81,118 @@ persistence.schemaSync(function(tx) { // First sync
 
 
 // Sync local database with server
-function sync(callback, item) {
-    ItemEntity.syncAll(persistence, server_sync_uri, persistence.sync.preferRemoteConflictHandler, function() {
-        console.log('Done syncing!');
-        if (item) {
-            // Now that everything is synced, change the dirty boolean to false
-            item.dirty = false;
-            persistence.flush();
-        } else {
-            // Check if there are still items with dirty = true
-            ItemEntity.all().filter('dirty','=',true).list(function(results) {
-                results.forEach(function(item) {
-                    item.dirty = false;
+db = {
+    sync: function(callback, item) {
+        ItemEntity.syncAll(persistence, server_sync_uri, persistence.sync.preferRemoteConflictHandler, function() {
+            console.log('Done syncing!');
+            if (item) {
+                // Now that everything is synced, change the dirty boolean to false
+                item.dirty = false;
+                persistence.flush();
+            } else {
+                // Check if there are still items with dirty = true
+                ItemEntity.all().filter('dirty','=',true).list(function(results) {
+                    results.forEach(function(item) {
+                        item.dirty = false;
+                    });
                 });
-            });
-            persistence.flush();
-        }
-        callback();
-    }, function() {
-        console.log('Error syncing to server!');
-        callback();
-    });
-}
-
-// Load elements from localStorage (if used) and sync with server (if dontSync == false)
-function load(callback, dontSync) {
-    persistence.loadFromLocalStorage(function() { // if using localStorage
-        if (using_localstorage)
-            console.log("All data loaded from localStorage!");
-        if (window.navigator.onLine && !dontSync) {
-            sync(callback); // Sync to server
-        } else {
+                persistence.flush();
+            }
             callback();
-        }
-    });
-}
-
-// Save elements to localStorage (if used) and sync with server (if dontSync == false)
-function save(callback, item, dontSync) {
-    persistence.saveToLocalStorage(function() { // if using localStorage
-        if (using_localstorage)
-            console.log("All data saved to localStorage!");
-        if (window.navigator.onLine && !dontSync) {
-            sync(callback, item); // Sync to server
-        } else {
-            persistence.flush(); // Flush the new changes
+        }, function() {
+            console.log('Error syncing to server!');
             callback();
-        }
-    });
-}
-
-function readOne(model, success) {
-    load(function() {
-        ItemEntity.load(model.id, function(item) {
-            model.set(item.toJSON());
-            success(model); // Success callback (will render the page)
         });
-    }, auto_sync);
+    },
+    // Load elements from localStorage (if used) and sync with server (if dontSync == false)
+    load: function(callback, dontSync) {
+        persistence.loadFromLocalStorage(function() { // if using localStorage
+            if (using_localstorage)
+                console.log("All data loaded from localStorage!");
+            if (window.navigator.onLine && !dontSync) {
+                sync(callback); // Sync to server
+            } else {
+                callback();
+            }
+        });
+    },
+    // Save elements to localStorage (if used) and sync with server (if dontSync == false)
+    save: function(callback, item, dontSync) {
+        persistence.saveToLocalStorage(function() { // if using localStorage
+            if (using_localstorage)
+                console.log("All data saved to localStorage!");
+            if (window.navigator.onLine && !dontSync) {
+                sync(callback, item); // Sync to server
+            } else {
+                persistence.flush(); // Flush the new changes
+                callback();
+            }
+        });
+    }
 }
 
-function readAll(model, success) {
-    load(function() {
-        listItems().list(function(results) { // Asynchronously fetches the results matching the query
-            var resp = [];
-            results.forEach(function(item) { // Iterate over the results
-                resp.push(item.toJSON());
-                // console.log(JSON.stringify(resp));
+var crud = {
+    readOne: function(model, success) {
+        db.load(function() {
+            ItemEntity.load(model.id, function(item) {
+                model.set(item.toJSON());
+                success(model); // Success callback (will render the page)
             });
-            success(resp); // Success callback (will render the page)
-        });
-    }, auto_sync);
-}
-
-function createAction(model, success) {
-    var item = new ItemEntity();
-    // The constructor automatically generates an id
-    convertModel(item, model);
-    item.deleted  = false;
-    item.dirty    = true;
-    // item.lastChange = getEpoch(new Date());
-    persistence.add(item); // Add to database
-    model.set(item.toJSON());
-
-    // Save changes in localStorage (if using) and sync with server
-    save(function() {
-        success(model); // Success callback (will render the page)
-    }, item);
-}
-
-function updateAction(model, success) {
-    ItemEntity.load(model.id, function(item) {
+        }, auto_sync);
+    },
+    readAll: function(model, success) {
+        db.load(function() {
+            listItems().list(function(results) { // Asynchronously fetches the results matching the query
+                var resp = [];
+                results.forEach(function(item) { // Iterate over the results
+                    resp.push(item.toJSON());
+                    // console.log(JSON.stringify(resp));
+                });
+                success(resp); // Success callback (will render the page)
+            });
+        }, auto_sync);
+    },
+    createAction: function(model, success) {
+        var item = new ItemEntity();
+        // The constructor automatically generates an id
         convertModel(item, model);
         item.deleted  = false;
         item.dirty    = true;
         // item.lastChange = getEpoch(new Date());
+        persistence.add(item); // Add to database
         model.set(item.toJSON());
 
         // Save changes in localStorage (if using) and sync with server
-        save(function() {
+        db.save(function() {
             success(model); // Success callback (will render the page)
         }, item);
-    });
-}
+    },
+    updateAction: function(model, success) {
+        ItemEntity.load(model.id, function(item) {
+            convertModel(item, model);
+            item.deleted  = false;
+            item.dirty    = true;
+            // item.lastChange = getEpoch(new Date());
+            model.set(item.toJSON());
 
-function deleteAction(model, success) {
-    ItemEntity.load(model.id, function(item) {
-        item.deleted  = !item.deleted; // Allow undo
-        item.dirty    = true;
-        model.set(item.toJSON());
+            // Save changes in localStorage (if using) and sync with server
+            db.save(function() {
+                success(model); // Success callback (will render the page)
+            }, item);
+        });
+    },
+    deleteAction: function(model, success) {
+        ItemEntity.load(model.id, function(item) {
+            item.deleted  = !item.deleted; // Allow undo
+            item.dirty    = true;
+            model.set(item.toJSON());
 
-        // Save changes in localStorage (if using) and sync with server
-        save(function() {
-            success(model); // Success callback (will render the page)
-        }, item);
-    });
+            // Save changes in localStorage (if using) and sync with server
+            db.save(function() {
+                success(model); // Success callback (will render the page)
+            }, item);
+        });
+    }
 }
 
 // Our Backbone.sync module (must be set on collections and models)
@@ -202,19 +200,19 @@ hybridSync = function(method, model, success, error) {
     switch (method) {
       case "read":
           if (model.id) {
-              readOne(model, success); // Useful for show and edit views
+              crud.readOne(model, success); // Useful for show and edit views
           } else {
-              readAll(model, success); // Useful for index view
+              crud.readAll(model, success); // Useful for index view
           }
           break;
       case "create":
-          createAction(model, success);
+          crud.createAction(model, success);
           break;
       case "update":
-          updateAction(model, success);
+          crud.updateAction(model, success);
           break;
       case "delete":
-          deleteAction(model, success);
+          crud.deleteAction(model, success);
           break;
     }
 };
