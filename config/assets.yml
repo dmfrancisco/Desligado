@@ -5,7 +5,6 @@ javascripts:
   # Common javascript dependencies
   common:
     - public/javascripts/jquery.min.js
-    - public/javascripts/jquery.offline.js
     - public/javascripts/rails.js
     - public/javascripts/json2.js
     - public/javascripts/underscore.js

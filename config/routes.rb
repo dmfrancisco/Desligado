@@ -9,6 +9,9 @@ OfflineWebApp::Application.routes.draw do
 
   root :to => 'home#index'
 
+  # This route points to a Rails::Offline Rack application
+  match "/application.manifest" => Rails::Offline
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
