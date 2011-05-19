@@ -1,4 +1,3 @@
-var synced = false;
 var auto_sync = false;
 
 $(function() {
@@ -8,12 +7,8 @@ $(function() {
         var faye = new Faye.Client('http://localhost:9292/faye');
         auto_sync = true;
         faye.subscribe('/sync', function(data) {
-            if (synced) {
-                synced = false;
-            } else if (data === 'ping') {
-                save(function() {
-                    synced = true;
-
+            if (data === 'ping') {
+                db.save(function() {
                     var items = new App.Collections.Items();
                     items.fetch({
                         success: function() {

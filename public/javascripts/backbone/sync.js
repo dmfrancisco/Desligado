@@ -110,7 +110,7 @@ db = {
             if (using_localstorage)
                 console.log("All data loaded from localStorage!");
             if (window.navigator.onLine && !dontSync) {
-                sync(callback); // Sync to server
+                db.sync(callback); // Sync to server
             } else {
                 callback();
             }
@@ -122,7 +122,7 @@ db = {
             if (using_localstorage)
                 console.log("All data saved to localStorage!");
             if (window.navigator.onLine && !dontSync) {
-                sync(callback, item); // Sync to server
+                db.sync(callback, item); // Sync to server
             } else {
                 persistence.flush(); // Flush the new changes
                 callback();
