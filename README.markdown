@@ -18,7 +18,7 @@ and the client keeps a synced local version of the data on a [HTML5 WebSQL
 database][intro-5] (or, if not supported by his browser, on his [Local
 Storage][intro-6]).
 
-[intro-0]: http://github.com/dmfrancisco/desligado
+[intro-0]: http://github.com/dmfrancisco/Desligado
 [intro-1]: http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 [intro-2]: http://en.wikipedia.org/wiki/Single-page_application
 [intro-3]: http://dev.w3.org/html5/websockets/
@@ -56,14 +56,14 @@ Dependencies
 [dependency-5]: http://persistencejs.org/
 
 
-Source
+Downloads
 ------------------------------------------------------------------------------
 
-* [Github Repo][download-0] (_version 1.1.7 stable_)
+* [Entire demo app][download-0] (_version 1.1.7 stable_)
 * [Rails Sync][download-1] for persistence.sync
 * [Backbone.sync adapter][download-2] for persistence.js
 
-[download-0]: http://github.com/dmfrancisco/desligado
+[download-0]: https://github.com/dmfrancisco/Desligado/zipball/v1.1.7-stable
 [download-1]: https://github.com/dmfrancisco/Desligado/blob/master/app/controllers/items_controller.rb
 [download-2]: https://github.com/dmfrancisco/Desligado/blob/master/public/javascripts/backbone/sync.js
 
