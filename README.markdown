@@ -173,8 +173,9 @@ Installation
 
 To initialize the application, run:
 
-<pre><code>bundle install</code>
-<code>rake db:migrate</pre></code>
+<pre><code>mv config/database.yml.sample config/database.yml</code>
+<code>bundle install</code>
+<code>rake db:migrate</code></pre>
 
 
 Usage
