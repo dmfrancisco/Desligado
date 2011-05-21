@@ -18,7 +18,7 @@ and the client keeps a synced local version of the data on a [HTML5 WebSQL
 database][intro-5] (or, if not supported by his browser, on his [Local
 Storage][intro-6]).
 
-[intro-0]: http://github.com/dmfrancisco/Desligado
+[intro-0]: http://dmfrancisco.github.com/Desligado/
 [intro-1]: http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 [intro-2]: http://en.wikipedia.org/wiki/Single-page_application
 [intro-3]: http://dev.w3.org/html5/websockets/
