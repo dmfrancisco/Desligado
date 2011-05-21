@@ -1,5 +1,5 @@
-Desligado — _A simple web application supporting disconnection and deferred updates_
-====================================================================================
+Desligado — _A simple web app supporting disconnection and deferred updates_
+============================================================================
 
 [_Desligado_][intro-0] is a proof-of-concept application made by junior
 developers.
