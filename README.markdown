@@ -1,10 +1,7 @@
-Desligado
-=========
+Desligado — _A simple web application supporting disconnection and deferred updates_
+====================================================================================
 
-_A simple web application supporting disconnection and deferred updates_
-------------------------------------------------------------------------------
-
-[_**Desligado**_][intro-0] is a proof-of-concept application made by junior
+[_Desligado_][intro-0] is a proof-of-concept application made by junior
 developers.
 
 It's a simple [CRUD][intro-1] web app that runs both online and offline.
@@ -21,7 +18,7 @@ and the client keeps a synced local version of the data on a [HTML5 WebSQL
 database][intro-5] (or, if not supported by his browser, on his [Local
 Storage][intro-6]).
 
-[intro-0]: #
+[intro-0]: http://github.com/dmfrancisco/desligado
 [intro-1]: http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 [intro-2]: http://en.wikipedia.org/wiki/Single-page_application
 [intro-3]: http://dev.w3.org/html5/websockets/
@@ -34,7 +31,7 @@ Storage][intro-6]).
 Specification
 ------------------------------------------------------------------------------
 
-_**Desligado**_ is a simple item management application.
+_Desligado_ is a simple item management application.
 Those are the functional requirements:
 
 * Users must be able to create, edit, destroy and list items
@@ -66,9 +63,9 @@ Source
 * [Rails Sync][download-1] for persistence.sync
 * [Backbone.sync adapter][download-2] for persistence.js
 
-[download-0]: #
-[download-1]: #
-[download-2]: #
+[download-0]: http://github.com/dmfrancisco/desligado
+[download-1]: https://github.com/dmfrancisco/Desligado/blob/master/app/controllers/items_controller.rb
+[download-2]: https://github.com/dmfrancisco/Desligado/blob/master/public/javascripts/backbone/sync.js
 
 
 Supported Browsers and Caveats
@@ -113,7 +110,7 @@ This solves the problem of accessing the static content in offline mode.
 [intro-8]: http://railscasts.com/episodes/247
 
 Another important aspect is that only one HTML page is fetched from the
-server. This page contains the necessary components to generate four views -
+server. This page contains the necessary components to generate four views —
 index, show, edit and new. We used [backbone.js][dependency-4] and
 [underscore][dependency-6] templates to build them. Backbone.js let us
 implement a well-structured client-side application, but is not so
@@ -149,7 +146,7 @@ with node.js servers. Since we are using Rails, we coded the necessary
 mechanisms to make it work with RoR.
 
 [intro-11]: http://persistencejs.org/plugin/sync
-[intro-12]: #
+[intro-12]: https://github.com/dmfrancisco/Desligado/
 
 
 ### Server pushing ###
@@ -211,5 +208,3 @@ Authors
 [m-1]: mailto:dmfranc@student.dei.uc.pt
 [t-1]: http://twitter.com/dmfrancisco
 [m-2]: mailto:jacdias@student.dei.uc.pt
-
-[TODO]: #
