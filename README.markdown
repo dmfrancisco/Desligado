@@ -7,19 +7,19 @@ _A simple web application supporting disconnection and deferred updates_
 [_**Desligado**_][intro-0] is a proof-of-concept application made by junior
 developers.
 
-It's a **simple [CRUD][intro-1] web app that runs both online and offline**.
+It's a simple [CRUD][intro-1] web app that runs both online and offline.
 Since it is meant to work when the client is disconnected from the web, and/or
 when the server is unavailable, it is heavily javascript based. Despite having
 a view for each one of the common actions (show, index, new and edit), it's a
-[**single-page application**][intro-2], since all necessary code (HTML,
+[single-page application][intro-2], since all necessary code (HTML,
 Javascript, and CSS) is retrieved with a single page load. Further
-communication is made using Ajax and **[HTML5 Web Sockets][intro-3] with
-[JSON][intro-3.1]**.
+communication is made using Ajax and [HTML5 Web Sockets][intro-3] with
+[JSON][intro-3.1].
 
-The resources are cached thanks to a [**HTML5 Cache Manifest**][intro-4] file
-and the client keeps a synced local version of the data on a [**HTML5 WebSQL
-database**][intro-5] (or, if not supported by his browser, on his [**Local
-Storage**][intro-6]).
+The resources are cached thanks to a [HTML5 Cache Manifest][intro-4] file
+and the client keeps a synced local version of the data on a [HTML5 WebSQL
+database][intro-5] (or, if not supported by his browser, on his [Local
+Storage][intro-6]).
 
 [intro-0]: #
 [intro-1]: http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
@@ -41,8 +41,6 @@ Those are the functional requirements:
 * The item list must be updated, every time the server's database changes (without requiring any clicks)
 * Users must be able to use the app offline (static contents should be presented, and dynamic contents must function)
 
-------------------------------------------------------------------------------
-
 
 Dependencies
 ------------------------------------------------------------------------------
@@ -60,8 +58,6 @@ Dependencies
 [dependency-4]: http://documentcloud.github.com/backbone/
 [dependency-5]: http://persistencejs.org/
 
-------------------------------------------------------------------------------
-
 
 Source
 ------------------------------------------------------------------------------
@@ -73,8 +69,6 @@ Source
 [download-0]: #
 [download-1]: #
 [download-2]: #
-
-------------------------------------------------------------------------------
 
 
 Supported Browsers and Caveats
@@ -91,8 +85,6 @@ the reference to the application manifest, server pushing will not work.
 Comment out the reference _<... manifest="application.manifest">_ or just
 remove the _public/application.manifest_ file to try it. This is a known
 issue.
-
-------------------------------------------------------------------------------
 
 
 The Application
@@ -164,12 +156,10 @@ mechanisms to make it work with RoR.
 
 At last, we wanted the server to broadcast to all connected clients when one
 of them modifies the server's database. We integrated [Faye][intro-11] for the
-server->client communication, which uses WebSockets, XMLHttpRequest (if
+server to client communication, which uses WebSockets, XMLHttpRequest (if
 WebSockets not supported) or JSON-P (if no other alternative is supported). We
 are still having some crazy issues regarding having both Faye and the
 application.manifest) which are listed on the bottom of this document.
-
-------------------------------------------------------------------------------
 
 
 Contribute
@@ -180,8 +170,6 @@ welcome (keep in mind that we are junior developers, with no background on
 Javascript, assynchronous programming and all the like). Pull requests to our
 [git repository][intro-12] would be greatly appreciated!
 
-------------------------------------------------------------------------------
-
 
 Installation
 ------------------------------------------------------------------------------
@@ -190,8 +178,6 @@ To initialize the application, run:
 
 <pre><code>bundle install</code>
 <code>rake db:migrate</pre></code>
-
-------------------------------------------------------------------------------
 
 
 Usage
@@ -202,15 +188,11 @@ Run Faye:
 Run the Rails sever:
 <pre><code>rails server</pre></code>
 
-------------------------------------------------------------------------------
-
 
 Issues
 ------------------------------------------------------------------------------
 
 A list of the current issues will be added soon.
-
-------------------------------------------------------------------------------
 
 
 Change log
@@ -218,8 +200,6 @@ Change log
 
 For now, you may check our github page to keep track of all the undergoing
 changes.
-
-------------------------------------------------------------------------------
 
 
 Authors
