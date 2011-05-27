@@ -12,16 +12,16 @@ CACHE MANIFEST
 /javascripts/persistence/persistence.store.memory.js
 /javascripts/persistence/persistence.store.websql.js
 /javascripts/persistence/persistence.sync.js
-/javascripts/backbone/sync.js
-/javascripts/backbone/server.push.js
-/javascripts/backbone/application.js
-/javascripts/backbone/models/item.js
-/javascripts/backbone/controllers/items.js
-/javascripts/backbone/collections/items.js
-/javascripts/backbone/views/index.js
-/javascripts/backbone/views/edit.js
-/javascripts/backbone/views/notice.js
-/javascripts/backbone/views/show.js
+/javascripts/app/sync.js
+/javascripts/app/server.push.js
+/javascripts/app/application.js
+/javascripts/app/models/item.js
+/javascripts/app/controllers/items.js
+/javascripts/app/collections/items.js
+/javascripts/app/views/index.js
+/javascripts/app/views/edit.js
+/javascripts/app/views/notice.js
+/javascripts/app/views/show.js
 
 /assets/app.jst
 

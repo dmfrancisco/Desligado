@@ -17,11 +17,11 @@ javascripts:
     - public/javascripts/persistence/persistence.store.memory.js
     - public/javascripts/persistence/persistence.store.websql.js
     - public/javascripts/persistence/persistence.sync.js
-    - public/javascripts/backbone/sync.js
-    - public/javascripts/backbone/server.push.js
-    - public/javascripts/backbone/application.js
-    - public/javascripts/backbone/models/*.js
-    - public/javascripts/backbone/**/*.js
+    - public/javascripts/app/sync.js
+    - public/javascripts/app/server.push.js
+    - public/javascripts/app/application.js
+    - public/javascripts/app/models/*.js
+    - public/javascripts/app/**/*.js
     - app/views/**/*.jst
 
 stylesheets:
