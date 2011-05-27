@@ -159,6 +159,42 @@ are still having some crazy issues regarding having both Faye and the
 application.manifest) which are listed on the bottom of this document.
 
 
+### Directory structure ###
+
+<pre><code>app/
+    controllers/
+        application_controller.rb
+        home_controller.rb
+        items_controller.rb
+    models/
+        item.rb
+    views/
+        home/
+            index.html.erb
+        items/
+            edit.jst
+            index.jst
+            show.jst
+public/
+    javascripts/
+        app/
+            collections/
+                items.js
+            controllers/
+                items.js
+            models/
+                item.js
+            views/
+                edit.js
+                index.js
+                notice.js
+                show.js
+            application.js
+            server.push.js
+            sync.js
+</code></pre>
+
+
 Initialization
 ------------------------------------------------------------------------------
 
