@@ -59,11 +59,11 @@ Dependencies
 Downloads
 ------------------------------------------------------------------------------
 
-* [Entire demo app][download-0] (_version 1.1.7 stable_)
+* [Entire demo app][download-0] (_version 1.1.8 stable_)
 * [Rails Sync][download-1] for persistence.sync
 * [Backbone.sync adapter][download-2] for persistence.js
 
-[download-0]: https://github.com/dmfrancisco/Desligado/zipball/v1.1.7-stable
+[download-0]: https://github.com/dmfrancisco/Desligado/zipball/v1.1.8-stable
 [download-1]: https://github.com/dmfrancisco/Desligado/blob/master/app/controllers/items_controller.rb
 [download-2]: https://github.com/dmfrancisco/Desligado/blob/master/public/javascripts/app/sync.js
 
