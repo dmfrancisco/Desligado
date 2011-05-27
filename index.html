@@ -52,7 +52,8 @@ Music by <a href="http://myspace.com/bfachada" target="_blank">B Fachada</a>.</p
 <ol><li><a href="#core-technologies">Core technologies</a></li>
 <li><a href="#javascript-mvc-framework">Javascript MVC framework</a></li>
 <li><a href="#data-synchronization">Data synchronization</a></li>
-<li><a href="#server-pushing">Server Pushing</a></li></ol></li>
+<li><a href="#server-pushing">Server Pushing</a></li>
+<li><a href="#directory-structure">Directory structure</a></li></ol></li>
 <li><a href="#initialization">Initialization</a></li>
 <li><a href="#usage">Usage</a></li>
 <li><a href="#issues">Issues</a></li>
@@ -199,6 +200,43 @@ WebSockets not supported) or JSON-P (if no other alternative is supported). We
 are still having some crazy issues regarding having both Faye and the
 application.manifest) which are listed on the bottom of this document.</p>
 
+<div id="directory-structure"></div>
+
+<h3>Directory structure</h3>
+
+<pre><code>app/
+    controllers/
+        application_controller.rb
+        home_controller.rb
+        items_controller.rb
+    models/
+        item.rb
+    views/
+        home/
+            index.html.erb
+        items/
+            edit.jst
+            index.jst
+            show.jst
+public/
+    javascripts/
+        app/
+            collections/
+                items.js
+            controllers/
+                items.js
+            models/
+                item.js
+            views/
+                edit.js
+                index.js
+                notice.js
+                show.js
+            application.js
+            server.push.js
+            sync.js
+</code></pre>
+
 <hr>
 
 <div id="initialization"></div>
@@ -208,10 +246,10 @@ application.manifest) which are listed on the bottom of this document.</p>
 <p>To initialize the application, run:</p>
 
 <pre>
-  <code>mv config/database.yml.sample config/database.yml</code>
-  <code>mv public/application.manifest.sample public/application.manifest</code>
-  <code>bundle install</code>
-  <code>rake db:migrate</code>
+<code>mv config/database.yml.sample config/database.yml</code>
+<code>mv public/application.manifest.sample public/application.manifest</code>
+<code>bundle install</code>
+<code>rake db:migrate</code>
 </pre>
 
 <hr>
