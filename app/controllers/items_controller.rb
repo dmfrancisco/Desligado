@@ -35,7 +35,7 @@ class ItemsController < ApplicationController
     params["_json"].each do |item_hash|
       item = Item.find_by_uuid item_hash[:id] # Checks if already exists
       item = Item.new unless item # If it's a new item, create
-      item.name     = item_hash['name']
+      item.name     = item_hash[:name]
       item.category = item_hash[:category]
       item.deleted  = item_hash[:deleted]
       item.uuid     = item_hash[:id]
