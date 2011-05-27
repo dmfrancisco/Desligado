@@ -168,7 +168,7 @@ Javascript, assynchronous programming and all the like). Pull requests to our
 [git repository][intro-12] would be greatly appreciated!
 
 
-Installation
+Initialization
 ------------------------------------------------------------------------------
 
 To initialize the application, run:
