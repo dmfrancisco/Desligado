@@ -159,15 +159,6 @@ are still having some crazy issues regarding having both Faye and the
 application.manifest) which are listed on the bottom of this document.
 
 
-Contribute
-------------------------------------------------------------------------------
-
-Feel free to use the code for your own projects. Improvements are very
-welcome (keep in mind that we are junior developers, with no background on
-Javascript, assynchronous programming and all the like). Pull requests to our
-[git repository][intro-12] would be greatly appreciated!
-
-
 Initialization
 ------------------------------------------------------------------------------
 
@@ -199,6 +190,15 @@ Change log
 
 For now, you may check our github page to keep track of all the undergoing
 changes.
+
+
+Contribute
+------------------------------------------------------------------------------
+
+Feel free to use the code for your own projects. Improvements are very
+welcome (keep in mind that we are junior developers, with no background on
+Javascript, asynchronous programming and all the like). Pull requests to our
+[git repository][intro-12] would be greatly appreciated!
 
 
 Authors
