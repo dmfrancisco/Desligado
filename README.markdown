@@ -36,7 +36,7 @@ Those are the functional requirements:
 
 * Users must be able to create, edit, destroy and list items
 * The item list must be updated, every time the server's database changes (without requiring any clicks)
-* Users must be able to use the app offline (static contents should be presented, and dynamic contents must function)
+* Users must be able to use the app offline (static contents should be presented, and dynamic contents must function) even after closing and reopening the browser
 
 
 Dependencies
@@ -65,7 +65,7 @@ Downloads
 
 [download-0]: https://github.com/dmfrancisco/Desligado/zipball/v1.1.7-stable
 [download-1]: https://github.com/dmfrancisco/Desligado/blob/master/app/controllers/items_controller.rb
-[download-2]: https://github.com/dmfrancisco/Desligado/blob/master/public/javascripts/backbone/sync.js
+[download-2]: https://github.com/dmfrancisco/Desligado/blob/master/public/javascripts/app/sync.js
 
 
 Supported Browsers and Caveats
