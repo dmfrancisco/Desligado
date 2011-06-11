@@ -1,3 +1,8 @@
+(a special _Thank You_ to [James Yu][thanks-0] and [Zef Hemel][thanks-1])
+
+[thanks-0]: http://www.jamesyu.org/
+[thanks-1]: http://zef.me/
+
 Desligado — _A simple web app supporting disconnection and deferred updates_
 ============================================================================
 
