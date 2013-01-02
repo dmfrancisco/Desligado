@@ -245,9 +245,9 @@ Javascript, asynchronous programming and all the like). Pull requests to our
 Authors
 ------------------------------------------------------------------------------
 
-- David Francisco { [dmfranc@student.dei.uc.pt][m-1]; [@dmfrancisco][t-1] }
+- David Francisco { [hello@dmfranc.com][m-1]; [@dmfrancisco][t-1] }
 - José Dias { [jacdias@student.dei.uc.pt][m-2] }
 
-[m-1]: mailto:dmfranc@student.dei.uc.pt
+[m-1]: mailto:hello@dmfranc.com
 [t-1]: http://twitter.com/dmfrancisco
 [m-2]: mailto:jacdias@student.dei.uc.pt
