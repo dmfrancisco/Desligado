@@ -1,10 +1,4 @@
-(a special _Thank You_ to [James Yu][thanks-0] and [Zef Hemel][thanks-1])
-
-[thanks-0]: http://www.jamesyu.org/
-[thanks-1]: http://zef.me/
-
-Desligado — _A simple web app supporting disconnection and deferred updates_
-============================================================================
+### Desligado: _A simple web app supporting disconnection and deferred updates_
 
 [_Desligado_][intro-0] is a proof-of-concept application made by junior
 developers.
@@ -23,6 +17,10 @@ and the client keeps a synced local version of the data on a [HTML5 WebSQL
 database][intro-5] (or, if not supported by his browser, on his [Local
 Storage][intro-6]).
 
+A special **Thank You** to [James Yu][thanks-0] and [Zef Hemel][thanks-1].
+
+[thanks-0]: http://www.jamesyu.org/
+[thanks-1]: http://zef.me/
 [intro-0]: http://dmfrancisco.github.com/Desligado/
 [intro-1]: http://en.wikipedia.org/wiki/Create,_read,_update_and_delete
 [intro-2]: http://en.wikipedia.org/wiki/Single-page_application
@@ -32,9 +30,9 @@ Storage][intro-6]).
 [intro-6]: http://dev.w3.org/html5/webstorage/
 [intro-3.1]: http://www.json.org/js.html
 
+---
 
-Specification
-------------------------------------------------------------------------------
+### Specification
 
 _Desligado_ is a simple item management application.
 Those are the functional requirements:
@@ -44,8 +42,7 @@ Those are the functional requirements:
 * Users must be able to use the app offline (static contents should be presented, and dynamic contents must function) even after closing and reopening the browser
 
 
-Dependencies
-------------------------------------------------------------------------------
+### Dependencies
 
 * Built with Ruby 1.9.2 and Rails 3.0.5
 * [Faye][dependency-1] gem (tested with 0.5.5)
@@ -61,8 +58,7 @@ Dependencies
 [dependency-5]: http://persistencejs.org/
 
 
-Downloads
-------------------------------------------------------------------------------
+### Downloads
 
 * [Entire demo app][download-0] (_version 1.1.8 stable_)
 * [Rails Sync][download-1] for persistence.sync
@@ -73,8 +69,7 @@ Downloads
 [download-2]: https://github.com/dmfrancisco/Desligado/blob/master/public/javascripts/app/sync.js
 
 
-Supported Browsers and Caveats
-------------------------------------------------------------------------------
+### Supported Browsers and Caveats
 
 Should work with, at least:
 
@@ -89,15 +84,14 @@ remove the _public/application.manifest_ file to try it. This is a known
 issue.
 
 
-The Application
-------------------------------------------------------------------------------
+### The Application
 
 The goal for this project was to create a multi-client simple web application
 with some basic functionalities (the creation, manipulation and deletion of
 shared items) that worked both online and offline.
 
 
-### Core technologies ###
+#### Core technologies
 
 To achieve the behaviour of keeping functionality in offline mode, we used
 several techniques introduced in HTML5 - [Cache Manifest][intro-4],
@@ -128,7 +122,7 @@ we followed the approach designed by [James Yu][intro-9] on his
 [dependency-6]: http://documentcloud.github.com/underscore/
 
 
-### Javascript MVC framework ###
+#### Javascript MVC framework
 
 Backbone is composed by several modules. It contains one module called
 Backbone.sync which lets us persist data through RESTful JSON requests to the
@@ -139,7 +133,7 @@ client and server are online. This is tougher than it may look, since we are
 talking about a multi-client app, with desynchronized clocks, etc..
 
 
-### Data synchronization ###
+#### Data synchronization
 
 In what concerns persistence, we used persistence.js, and specifically the
 [persistence.sync.js][intro-11] plugin, to keep the databases synced together.
@@ -154,7 +148,7 @@ mechanisms to make it work with RoR.
 [intro-12]: https://github.com/dmfrancisco/Desligado/
 
 
-### Server pushing ###
+#### Server pushing
 
 At last, we wanted the server to broadcast to all connected clients when one
 of them modifies the server's database. We integrated [Faye][intro-11] for the
@@ -164,7 +158,7 @@ are still having some crazy issues regarding having both Faye and the
 application.manifest) which are listed on the bottom of this document.
 
 
-### Directory structure ###
+#### Directory structure
 
 <pre><code>app/
     controllers/
@@ -200,8 +194,7 @@ public/
 </code></pre>
 
 
-Initialization
-------------------------------------------------------------------------------
+### Initialization
 
 To initialize the application, run:
 
@@ -211,8 +204,7 @@ To initialize the application, run:
 <code>rake db:migrate</code></pre>
 
 
-Usage
-------------------------------------------------------------------------------
+### Usage
 
 Run Faye:
 <pre><code>rackup script/faye.ru -s thin -E production</pre></code>
@@ -220,21 +212,18 @@ Run the Rails sever:
 <pre><code>rails server</pre></code>
 
 
-Issues
-------------------------------------------------------------------------------
+### Issues
 
 A list of the current issues will be added soon.
 
 
-Change log
-------------------------------------------------------------------------------
+### Change log
 
 For now, you may check our github page to keep track of all the undergoing
 changes.
 
 
-Contribute
-------------------------------------------------------------------------------
+### Contribute
 
 Feel free to use the code for your own projects. Improvements are very
 welcome (keep in mind that we are junior developers, with no background on
@@ -242,8 +231,7 @@ Javascript, asynchronous programming and all the like). Pull requests to our
 [git repository][intro-12] would be greatly appreciated!
 
 
-Authors
-------------------------------------------------------------------------------
+### Authors
 
 - David Francisco { [hello@dmfranc.com][m-1]; [@dmfrancisco][t-1] }
 - José Dias { [jacdias@student.dei.uc.pt][m-2] }
