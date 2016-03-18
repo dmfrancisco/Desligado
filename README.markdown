@@ -1,3 +1,5 @@
+[![No Maintenance Intended](http://unmaintained.tech/badge.svg)](http://unmaintained.tech/)
+
 ### Desligado: _A simple web app supporting disconnection and deferred updates_
 
 [_Desligado_][intro-0] is a proof-of-concept application made by junior
